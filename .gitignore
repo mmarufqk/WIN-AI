@@ -1,0 +1,73 @@
+# python django
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+*.pkl
+*.egg-info/
+*.egg
+backend/db.sqlite3
+*.sqlite3
+/backend/env/
+backend/.env
+.env.local
+.env.*.local
+/backend/staticfiles/
+/backend/media/
+/backend/tmp/
+**/migrations/*.py
+!**/migrations/__init__.py
+**/migrations/__pycache__/
+/backend/client_secret_*.json
+
+# Node react
+/frontend/node_modules/
+/frontend/.pnp
+.pnp.js
+/frontend/build
+/frontend/dist
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+*.local
+.DS_Store
+Thumbs.db
+
+# code editor
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.lock
+
+
+htmlcov/
+.coverage
+.coveragerc
+.pytest_cache/
+
+# /frontend/coverage/
+# /frontend/coverage-final.json
+# /frontend/.parcel-cache/
+# /frontend/.next/
+
+
+# /frontend/.env
+# /frontend/.env.local
+# /frontend/.env.development.local
+# /frontend/.env.production.local
+
+# *~
+# *.bak
+# *.swp
+# *.swo
+# /tmp/
+# /temp/
