@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { ACCES_TOKEN, REFRESH_TOKEN } from "../constants";
-import Navbar from "../components/Navbar";
+// import Navbar from "../components/Navbar";
 import HomeHero from "../sections/HomeHero";
 import HomeCourse from "../sections/HomeCourse";
 import Footer from "../components/Footer";
@@ -17,7 +17,7 @@ function Home() {
 
     return (
         <div className="bg-gray-100 min-h-screen">
-            <Navbar />
+            {/* <Navbar /> */}
             <HomeHero />
             <HomeCourse />
             <Footer />

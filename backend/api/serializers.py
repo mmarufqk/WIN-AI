@@ -1,8 +1,10 @@
 from django.contrib.auth import get_user_model
-User = get_user_model()
 from rest_framework import serializers
-from .models import Note
 from rest_framework_simplejwt.tokens import RefreshToken
+from .models import Note, Dataset
+
+User = get_user_model()
+
 
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
@@ -20,11 +22,22 @@ class UserSerializer(serializers.ModelSerializer):
         )
         return user
 
+
 class NoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Note
         fields = ["id", "title", "content", "created_at", "author"]
         extra_kwargs = {"author": {"read_only": True}}
+
+
+class DatasetSerializer(serializers.ModelSerializer):
+    uploaded_by = serializers.ReadOnlyField(source="uploaded_by.username")
+
+    class Meta:
+        model = Dataset
+        fields = ["id", "name", "file", "uploaded_at", "uploaded_by"]
+        read_only_fields = ["uploaded_at", "uploaded_by"]
+
 
 class CustomTokenObtainPairSerializer(serializers.Serializer):
     username = serializers.CharField()
@@ -35,7 +48,6 @@ class CustomTokenObtainPairSerializer(serializers.Serializer):
         password = attrs.get("password")
         User = get_user_model()
 
-        # Cari user
         try:
             user = User.objects.get(username=login_input)
         except User.DoesNotExist:
@@ -55,4 +67,3 @@ class CustomTokenObtainPairSerializer(serializers.Serializer):
             "refresh": str(refresh),
             "access": str(refresh.access_token)
         }
-

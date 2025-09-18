@@ -12,6 +12,7 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.username
 
+
 class Note(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
@@ -20,3 +21,13 @@ class Note(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Dataset(models.Model):
+    name = models.CharField(max_length=255)  # Nama dataset biar gampang dibedain
+    file = models.FileField(upload_to="datasets/")  # Simpan CSV ke folder media/datasets/
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+    uploaded_by = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="datasets")
+
+    def __str__(self):
+        return f"{self.name} (by {self.uploaded_by.username})"
